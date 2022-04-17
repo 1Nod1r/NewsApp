@@ -9,7 +9,7 @@ import UIKit
 import SafariServices
 import JGProgressHUD
 
-class FirstViewController: UIViewController {
+final class FirstViewController: UIViewController {
     private let spinner = JGProgressHUD(style: .dark)
     var articles: [Article] = []
     let tableView = UITableView()
@@ -17,13 +17,17 @@ class FirstViewController: UIViewController {
     var hasMoreFollowers = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        configureVC()
         configureTableView()
         getData()
+    }
+    
+    private func configureVC(){
+        view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    func configureTableView(){
+    private func configureTableView(){
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.rowHeight = 110

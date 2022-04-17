@@ -23,8 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func createNavVC()->UINavigationController{
         
             let vc = FirstViewController()
-            vc.title =  "News"
-            
+            vc.title =  "BBC News"
             return UINavigationController(rootViewController: vc)
         
         

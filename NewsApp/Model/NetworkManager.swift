@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 
-enum Errors: Error{
-    case invalidUrl
-    case NoData
+enum Errors:String, Error{
+    case invalidUrl = "Invalid Url"
+    case NoData = "Whoops, there is no data :("
 }
 
 class NetworkManager {
