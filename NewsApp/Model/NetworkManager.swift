@@ -17,13 +17,16 @@ enum Errors: Error{
 class NetworkManager {
     
     let cache = NSCache<NSString, UIImage>()
-    let baseUrl = "https:newsapi.org/v2/top-headlines?country=us&category=business&apiKey=35298ec774e8470fb28c0ae706d4382d"
+    let baseUrl = "https:newsapi.org/v2/top-headlines?country=us&category=business&apiKey=35298ec774e8470fb28c0ae706d4382d&page="
     static let shared = NetworkManager()
     
-    func getData(completion:@escaping (Result<[Article],Errors>)->Void){
-         let url = URL(string: baseUrl)
+    func getData(page:Int,completion:@escaping (Result<[Article],Errors>)->Void){
+        if page > 4 {
+            return
+        }
+        let endPoint = URL(string: "\(baseUrl)\(page)")
         
-        let task = URLSession.shared.dataTask(with: url!) { data, response, error in
+        let task = URLSession.shared.dataTask(with: endPoint!) { data, response, error in
             guard let data = data,
                   let response = response as? HTTPURLResponse,
                   response.statusCode == 200,
@@ -37,7 +40,7 @@ class NetworkManager {
             
             do {
                 let result = try decoder.decode(Welcome.self, from: data)
-                dataModel = result.articles 
+                dataModel = result.articles
                 
                 completion(.success(dataModel))
             }
