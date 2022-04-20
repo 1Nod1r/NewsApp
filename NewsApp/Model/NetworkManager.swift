@@ -36,13 +36,13 @@ class NetworkManager {
                 return
             }
             let decoder = JSONDecoder()
-            var dataModel: [Article]
+            
             
             do {
                 let result = try decoder.decode(Welcome.self, from: data)
-                dataModel = result.articles
                 
-                completion(.success(dataModel))
+                
+                completion(.success(result.articles))
             }
             catch{
                 
