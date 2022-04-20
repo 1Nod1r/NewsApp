@@ -35,7 +35,7 @@ class ArticleCell: UITableViewCell {
             }
         }
         titleLabel.text = article.title
-        bodyLabel.text = article.content
+        bodyLabel.text = article.content ?? "No content available"
         
     }
     
@@ -45,17 +45,17 @@ class ArticleCell: UITableViewCell {
         addSubview(bodyLabel)
         let padding: CGFloat = 8
         NSLayoutConstraint.activate([
-            
+    
             avatarImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             avatarImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -padding),
             avatarImageView.widthAnchor.constraint(equalToConstant: 90),
             avatarImageView.heightAnchor.constraint(equalToConstant: 90),
-            
+
             titleLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             titleLabel.heightAnchor.constraint(equalToConstant: 26),
             titleLabel.trailingAnchor.constraint(equalTo: avatarImageView.leadingAnchor, constant: -padding),
-            
+
             bodyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             bodyLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             bodyLabel.heightAnchor.constraint(equalToConstant: 55),
