@@ -24,9 +24,9 @@ class NetworkManager {
         if page > 4 {
             return
         }
-        let endPoint = URL(string: "\(baseUrl)\(page)")
+        guard let endPoint = URL(string: "\(baseUrl)\(page)") else { return }
         
-        let task = URLSession.shared.dataTask(with: endPoint!) {data, response, error in
+        let task = URLSession.shared.dataTask(with: endPoint) {data, response, error in
             guard let data = data,
                   let response = response as? HTTPURLResponse,
                   response.statusCode == 200,
