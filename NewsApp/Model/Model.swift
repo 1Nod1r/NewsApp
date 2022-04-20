@@ -10,8 +10,6 @@ import Foundation
 
 
 struct Welcome: Codable{
-    let status: String
-    let totalResults: Int
     let articles: [Article]
 }
 
